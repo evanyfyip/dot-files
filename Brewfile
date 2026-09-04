@@ -34,6 +34,8 @@ brew "k9s"
 brew "kind"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # MongoDB Shell to connect, configure, query, and work with your MongoDB database
