@@ -60,6 +60,8 @@ brew "terragrunt"
 brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
 # The AI coding agent built for the terminal.
 brew "anomalyco/tap/opencode", trusted: true
 # Terraform
