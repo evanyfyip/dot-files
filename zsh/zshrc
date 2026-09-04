@@ -1,0 +1,63 @@
+eval "$(pyenv init -)"
+export PATH="$HOME/.local/bin:$PATH"
+
+# Quick function aliases
+## Obsidian
+vaults() {cd /Users/evany/Documents/Work/obsidian-vaults/}
+evans-work-vault() {cd /Users/evany/Documents/Work/obsidian-vaults/evans-work-vault}
+evans-vault() {cd /Users/evany/Documents/Personal/evans-vault}
+## Code
+codebase() {cd /Users/evany/Documents/Work/code/}
+usafacts-repos() {cd /Users/evany/Documents/Work/code/usafacts-repos/}
+sandbox() {cd /Users/evany/Documents/Work/code/sandbox/}
+dev() {cd /Users/evany/Documents/Work/code/dev/}
+alias pulse="$HOME/Documents/Work/code/dev/ai-researcher-agent/bin/pulse"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+alias kcdev="kubectl config use-context usafacts-01-dev"
+alias kcqa="kubectl config use-context usafacts-01-qa"
+alias kcprod="kubectl config use-context usafacts-01-prod"
+alias kctools="kubectl config use-context usafacts-01-tools"
+alias kc="kubectl"
+alias mcpinspector="npx @modelcontextprotocol/inspector"
+
+# Hermes agent
+# Usage: hermes-start [-r /path/to/repo] ...
+#   Vault is always mounted at /workspace/vault.
+#   Each -r flag mounts a repo at /workspace/<dirname>.
+hermes-start() {
+  docker stop hermes 2>/dev/null; docker rm hermes 2>/dev/null
+
+  local vault="/Users/evany/Documents/Work/obsidian-vaults/evans-work-vault"
+  local -a extra_mounts=()
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -r|--repo)
+        local rpath; rpath="$(realpath "$2")"
+        extra_mounts+=(-v "$rpath:/workspace/$(basename "$rpath")")
+        shift 2 ;;
+      *) shift ;;
+    esac
+  done
+
+  docker run -d \
+    --name hermes \
+    --restart unless-stopped \
+    -v ~/.hermes:/opt/data \
+    -v ~/.claude:/root/.claude \
+    -v "$vault:/workspace/vault" \
+    "${extra_mounts[@]}" \
+    -p 8642:8642 \
+    nousresearch/hermes-agent gateway run
+}
+
+# Clean restart — stops, removes, and starts fresh (accepts same flags as hermes-start)
+hermes-restart() { hermes-start "$@"; }
+
+alias hermes-stop='docker stop hermes && docker rm hermes'
+alias hermes-logs='docker logs -f hermes'
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+eval "$(starship init zsh)"
