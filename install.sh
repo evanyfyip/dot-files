@@ -19,6 +19,7 @@ link "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 link "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
 link "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 link "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+link "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
 echo
 echo "Done. Restart your terminal or run: exec zsh"

@@ -14,6 +14,8 @@ brew "cypher-shell"
 brew "doctl"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # GitHub command-line tool
@@ -36,6 +38,8 @@ brew "kubernetes-cli"
 brew "node"
 # MongoDB Shell to connect, configure, query, and work with your MongoDB database
 brew "mongosh"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "nginx"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -52,6 +56,8 @@ brew "ripgrep"
 brew "starship"
 # Thin wrapper for Terraform e.g. for locking state
 brew "terragrunt"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # The AI coding agent built for the terminal.
@@ -60,6 +66,7 @@ brew "anomalyco/tap/opencode", trusted: true
 brew "hashicorp/tap/terraform", trusted: true
 # Allows you to manage your stacked changes and submit them for review on GitHub
 brew "withgraphite/tap/graphite", trusted: true
+cask "font-jetbrains-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Interactive tool for analyzing MongoDB data
