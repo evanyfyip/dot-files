@@ -58,6 +58,23 @@ hermes-restart() { hermes-start "$@"; }
 alias hermes-stop='docker stop hermes && docker rm hermes'
 alias hermes-logs='docker logs -f hermes'
 
+# Completion system — must be initialized before bashcompinit/fzf-tab/other completions
+autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# fzf-tab — must load after compinit, before plugins that wrap completion widgets
+source "$(brew --prefix)/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' fzf-command fzf
+
+# zsh-autosuggestions — inline history-based suggestions, accept with →
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# zsh-syntax-highlighting — must be sourced last among zle-wrapping plugins
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# fzf shell integration (key bindings: Ctrl+R history, Ctrl+T files, Alt+C cd)
+eval "$(fzf --zsh)"
+
 eval "$(starship init zsh)"

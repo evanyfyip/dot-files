@@ -13,6 +13,14 @@ Personal dev environment setup: zsh, [Starship](https://starship.rs) prompt, [Gh
 Ghostty's font is set to `JetBrainsMono Nerd Font` (installed via the
 `font-jetbrains-mono-nerd-font` cask) so LazyVim's icons render correctly.
 
+`zsh/zshrc` also wires up a "Warp-lite" shell experience via Homebrew packages:
+`zsh-autosuggestions` (inline history-based command suggestions, accept with
+`→`), `zsh-syntax-highlighting` (color commands as valid/invalid while typing),
+and `fzf` + `fzf-tab` (fuzzy-searchable Tab-completion menu and `Ctrl+R`/`Ctrl+T`/
+`Alt+C` fuzzy history/file/directory search). These are resolved via
+`$(brew --prefix)` at shell startup rather than hardcoded, so the config still
+works if Homebrew's prefix differs (e.g. Intel Mac).
+
 ## Install
 
 ```sh
