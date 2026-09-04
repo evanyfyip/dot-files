@@ -1,6 +1,9 @@
 eval "$(pyenv init -)"
 export PATH="$HOME/.local/bin:$PATH"
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Quick function aliases
 ## Obsidian
 vaults() {cd /Users/evany/Documents/Work/obsidian-vaults/}
@@ -76,5 +79,12 @@ source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 
 # fzf shell integration (key bindings: Ctrl+R history, Ctrl+T files, Alt+C cd)
 eval "$(fzf --zsh)"
+
+# zoxide — frecency-based `cd`, learns your most-visited directories
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+alias lg="lazygit"
+alias zrc="source ~/.zshrc"
 
 eval "$(starship init zsh)"
