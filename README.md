@@ -46,6 +46,14 @@ do that non-interactively (e.g. right after `install.sh`):
 nvim --headless "+Lazy! sync" +qa
 ```
 
+## Work/personal-specific config
+
+`zsh/zshrc` sources `~/.zsh_local` if it exists. That file isn't part of this
+repo — it's where machine- or employer-specific aliases, functions, and paths
+live (e.g. work VPN/kubectl contexts, internal tool shortcuts). This keeps the
+shared repo generic and safe to hand to someone else; each machine's
+`~/.zsh_local` stays local.
+
 ## Updating
 
 Edit the files directly in this repo (they're symlinked into place, so changes
